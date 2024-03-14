@@ -1,0 +1,9 @@
+body{
+    background-color: #222;
+    color: #fff;
+    margin: 0;
+    display: grid;
+    place-content: center;
+    font-family: system-ui;
+    height: 100dvh;
+}
