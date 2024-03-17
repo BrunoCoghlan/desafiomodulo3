@@ -1,10 +1,11 @@
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { v4 } from 'uuid'
 
-const Formulario = ({ setAlert, setListado, listado, children }) => {
+const Formulario = ({ setRenderLista, setAlert, setListado, listado, children, setSearch }) => {
+  /* se declaran estado para los input */
   const [nombre, setNombre] = useState('')
   const [correo, setCorreo] = useState('')
   const [edad, setEdad] = useState('')
@@ -20,7 +21,7 @@ const Formulario = ({ setAlert, setListado, listado, children }) => {
     if (telefono === '') return setAlert({ mensaje: 'Completa el con tu Telefono', color: 'danger' })
     setAlert({ mensaje: 'Colaboradora agregado exitosamente!', color: 'success' })
     setListado([...listado, {
-      id: v4(),
+      id: v4(), // se usa paquete uuid v4
       nombre,
       correo,
       edad,
@@ -32,7 +33,11 @@ const Formulario = ({ setAlert, setListado, listado, children }) => {
     setEdad('')
     setCargo('')
     setTelefono('')
+    setSearch('')
   }
+  useEffect(() => { // renderiza la lista al ser actualizada
+    setRenderLista(listado)
+  }, [listado])
   return (
     <Col xs={12} md={3}>
       <Form onSubmit={handleSubmit}>

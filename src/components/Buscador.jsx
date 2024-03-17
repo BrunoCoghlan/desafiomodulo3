@@ -1,25 +1,21 @@
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
-import { useState } from 'react'
 
-const Buscador = ({ setBuscar, listado }) => {
-  const [search, setSearch] = useState('')
+const Buscador = ({ setRenderLista, listado, setSearch, search }) => {
   const handleSearch = (e) => {
+    const searchText = e.target.value.toLowerCase()
     setSearch(e.target.value)
-    handlebuscador(search)
-  }
-  const handlebuscador = (value) => {
-    const buscador = listado.filter((item) => {
+    setRenderLista(listado.filter((item) => {
       return (
-        item.nombre.toLowerCase().includes(value.toLowerCase()) ||
-        item.correo.toLowerCase().includes(value.toLowerCase()) ||
-        item.edad.toLowerCase().includes(value.toLowerCase()) ||
-        item.cargo.toLowerCase().includes(value.toLowerCase()) ||
-        item.telefono.toLowerCase().includes(value.toLowerCase())
+        item.nombre.toLowerCase().includes(searchText) ||
+        item.correo.toLowerCase().includes(searchText) ||
+        item.edad.toLowerCase().includes(searchText) ||
+        item.cargo.toLowerCase().includes(searchText) ||
+        item.telefono.toLowerCase().includes(searchText)
       )
     }
     )
-    setBuscar(buscador)
+    )
   }
   return (
     <Col xs={12} md={6} className='py-3'>

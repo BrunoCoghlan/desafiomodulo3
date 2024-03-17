@@ -1,7 +1,7 @@
 import Table from 'react-bootstrap/Table'
 import Col from 'react-bootstrap/Col'
-
-const Listado = ({ listado }) => {
+/* se dedica a renderizar el estado renderlista cada vez que sea modificado con el .map */
+const Listado = ({ renderLista }) => {
   return (
     <Col xs={12} md={9}>
       <div className='table-responsive'>
@@ -16,7 +16,7 @@ const Listado = ({ listado }) => {
             </tr>
           </thead>
           <tbody>
-            {listado.map(({ cargo, correo, edad, nombre, telefono, id }) => {
+            {renderLista.map(({ cargo, correo, edad, nombre, telefono, id }) => {
               return (
                 <tr key={id}>
                   <td>{nombre}</td>
